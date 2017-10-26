@@ -12,7 +12,7 @@ int main(int ac, char **av){
 	int i = 5;
 	while (i > 0){
     	get_next_line(filedesc, &line);
-		printf("\nOOOOOOOOOOOOOOOOOOOOOOOOOOOOffial_Result%d: %s\n", i, line);
+		printf("Offial_Result%d: %s\n", i, line);
 		i--;
 	}
 	close(filedesc);
