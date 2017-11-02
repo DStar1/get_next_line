@@ -6,7 +6,7 @@
 /*   By: hasmith <hasmith@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/21 17:16:54 by hasmith           #+#    #+#             */
-/*   Updated: 2017/09/25 13:41:01 by hasmith          ###   ########.fr       */
+/*   Updated: 2017/10/31 17:45:08 by hasmith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static char	*ft_strloop(char const *s1, char const *s2, int s1_len, int s2_len)
 	j = 0;
 	if ((fresh = ft_strnew(s1_len + s2_len)) == NULL)
 		return (NULL);
-	while (i + j < s1_len + s2_len)
+	while ((i + j) < (s1_len + s2_len))
 	{
 		if (i < s1_len)
 		{
@@ -55,6 +55,7 @@ char		*ft_strjoin(char const *s1, char const *s2)
 	s1_len = ft_strlen(s1);
 	s2_len = ft_strlen(s2);
 	fresh = ft_strloop(s1, s2, s1_len, s2_len);
+	free((void*)s1);
 	if (fresh == NULL)
 		return (NULL);
 	return (fresh);

@@ -2,8 +2,12 @@ NAME = get_next_line
 
 LIBF = libft/
 
+MAIN = gnl/gnl$(GNL).c
+
+GNL = 7_2
+
 SRC =	get_next_line.c \
-		main.c
+		$(MAIN)
 
 FLAGS = -Wall -Werror -Wextra
 
@@ -11,7 +15,7 @@ all: $(NAME)
 
 $(NAME):
 	make all -C libft
-	gcc -g -o $(NAME) libft/libft.a $(SRC) 
+	gcc -g -o $(NAME) libft/libft.a $(SRC)
 
 clean:
 	/bin/rm -f *.o
