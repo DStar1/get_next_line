@@ -1,0 +1,22 @@
+job_name: get_next_line
+
+correction:
+  units:
+    test_error:
+      type: mandatory
+      potential_grade: 10
+    test_basic:
+      type: mandatory
+      potential_grade: 40
+    test_medium:
+      type: mandatory
+      potential_grade: 40
+    test_hard:
+      type: mandatory
+      potential_grade: 10
+    test_bonus_static:
+      type: mandatory
+      potential_grade: 10
+    test_bonus_fd:
+      type: mandatory
+      potential_grade: 15

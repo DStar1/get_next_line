@@ -1,0 +1,7 @@
+name: get_next_line
+
+user_directory: .
+
+check_norme: True
+
+unit: custom

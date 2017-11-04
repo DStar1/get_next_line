@@ -6,14 +6,16 @@ int main(int ac, char **av){
   int		filedesc;
   char	*line;
   char	*filename;
+  int i = 0;
 
 //filename = av[1];
 line = NULL;
 if ((filedesc = open(av[1], O_RDONLY)) == -1)
 return (0);
-int i = 1;
-while (get_next_line(filedesc, &line))
-//printf("%s", line);
+//int i = 1;
+while ((i = get_next_line(filedesc, &line)))
+	printf("%d, %s\n", i, line);
+printf("%d\n", i);
 close(filedesc);
 free(line);
 return (0);

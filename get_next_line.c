@@ -6,7 +6,7 @@
 /*   By: hasmith <hasmith@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/30 14:59:00 by hasmith           #+#    #+#             */
-/*   Updated: 2017/10/31 18:05:44 by hasmith          ###   ########.fr       */
+/*   Updated: 2017/11/03 20:54:55 by hasmith          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,38 +68,3 @@ int		get_next_line(const int fd, char **line)
 	}
 	return (0);
 }
-
-/*
-//attempting to fix 2nd error
-int		get_next_line(const int fd, char **line)
-{
-	int				ret;
-	char			buff[BUFF_SIZE + 1];
-	static char		*str;
-
-	RETURN_NEG1((fd < 0 || !line));
-	RETURN_1((str && check_str(&str, line, '\n')));
-	while ((ret = read(fd, buff, BUFF_SIZE)))
-	{
-		RETURN_NEG1((ret == -1));
-		if (!str)
-			RETURN_NEG((str = ft_strnew(0)));
-		buff[ret] = '\0';
-		str = ft_strjoin(str, buff);
-		if (ft_strchr(str, '\n'))
-			break ;
-	}
-	int i = check_str(&str, line, '\n');
-	RETURN_1((i && ret > 0));
-	if (i == 0)
-		check_str(&str, line, '\0');
-	if ((str && ret == 0 && ft_strlen(str)))// || str && ret == 0 && !(ft_strchr(str, '\n')))
-	{
-		*line = ft_strsub(str, 0, ft_strlen(str));
-		free(str);
-		str = NULL;
-		return (1);
-	}
-	return (0);
-}
-*/
