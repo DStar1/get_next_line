@@ -12,23 +12,19 @@
 
 #include "get_next_line.h"
 
-/*
-** multiple filedescriptors
-*/
-
-int		check_str(char **str, char **line, int fd)
+int		check_str(char **str, char **line)
 {
 	int		i;
 	char	*tmp;
 
 	i = 0;
-	while (str[fd] && str[fd][i] != '\0')
+	while (str[0] && str[0][i] != '\0')
 	{
-		if (str[fd][i] == '\n')
+		if (str[0][i] == '\n')
 		{
-			*line = ft_strsub(str[fd], 0, i);
-			tmp = str[fd];
-			str[fd] = ft_strsub(str[fd], i + 1, ft_strlen(str[fd]) - i);
+			*line = ft_strsub(str[0], 0, i);
+			tmp = str[0];
+			str[0] = ft_strsub(str[0], i + 1, ft_strlen(str[0]) - i);
 			free(tmp);
 			return (1);
 		}
@@ -48,26 +44,26 @@ int		get_next_line(const int fd, char **line)
 {
 	int				ret;
 	char			buff[BUFF_SIZE + 1];
-	static char		*str[300];
+	static char		*str;
 
 	RETURN_NEG1((fd < 0 || !line));
-	RETURN_1((str[fd] && check_str((char**)str, line, fd)));
+	RETURN_1((str && check_str(&str, line)));
 	while ((ret = read(fd, buff, BUFF_SIZE)))
 	{
 		RETURN_NEG1((ret == -1));
-		if (!str[fd])
-			RETURN_NEG((str[fd] = ft_strnew(0)));
+		if (!str)
+			RETURN_NEG((str = ft_strnew(0)));
 		buff[ret] = '\0';
-		str[fd] = ft_strjoin(str[fd], buff);
-		if (ft_strchr(str[fd], '\n'))
+		str = ft_strjoin(str, buff);
+		if (ft_strchr(str, '\n'))
 			break ;
 	}
-	RETURN_1((check_str((char**)str, line, fd) && ret > 0));
-	if ((str[fd] && ret == 0 && ft_strlen(str[fd])))
+	RETURN_1((check_str(&str, line) && ret > 0));
+	if ((str && ret == 0 && ft_strlen(str)))
 	{
-		*line = ft_strsub(str[fd], 0, ft_strlen(str[fd]));
-		free(str[fd]);
-		str[fd] = NULL;
+		*line = ft_strsub(str, 0, ft_strlen(str));
+		free(str);
+		str = NULL;
 		return (1);
 	}
 	return (0);
